@@ -17,13 +17,5 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-    /**
-     * @Route("/", name="home")
-     */
-    public function bidon(): Response
-    {
-        return $this->render('home/home.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
+
 }

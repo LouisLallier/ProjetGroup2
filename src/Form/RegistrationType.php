@@ -22,6 +22,13 @@ class RegistrationType extends AbstractType
 
         $builder
 
+            -> add('firstname', TextType::class,[
+                'required' => false,
+                "label"=>false,
+                'attr' => [
+                    'placeholder' => 'Prénom'
+                ]
+            ])
 
 
             ->add('email', EmailType::class ,[
