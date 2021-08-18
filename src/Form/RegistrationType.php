@@ -40,13 +40,13 @@ class RegistrationType extends AbstractType
                 'first_options' => [
                     'label' => 'Mot de passe',
                     'attr' => [
-                        'placeholder' => 'met ton mdp',
+                        'placeholder' => 'Met ton mdp',
                     ]
                 ],
                 'second_options' => [
-                    'label' => ' confirme le Mot de passe',
+                    'label' => ' Confirmer le Mot de passe',
                     'attr' => [
-                        'placeholder' => 'remet ton mot de passe',
+                        'placeholder' => 'Remet ton mot de passe',
                     ]
                 ],
                 'mapped' => false,
