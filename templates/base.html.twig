@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Bijouterie{% endblock %}</title>
+    <title>{% block title %}Pro to Particular{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.1/lux/bootstrap.min.css" integrity="sha512-EJJuqC8nbI+dUjDM89eZ8dVmckG/vAfKIhmW4pi3Y/S1gE8uvIHuPqpbZ3/DliUQOZbS0Wp7317zoPRRoX+E+A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
-    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
     {# la fonction twig asset() permet d'accéder au dossier "public" #}
     {% block stylesheets %}{% endblock %}
 
@@ -19,10 +19,15 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="#">Bijouterie</a>
+        <a class="navbar-brand align-items-md-baseline" style="display: flex;" href="#">
+
+            <img src="images/logo.png" alt="" width="70px" height="70px" class="d-inline-block align-text-top">
+            <p>Pro to Particular</p>
+
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,7 +38,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                 </li>
 
                 {% if not app.user %}
@@ -47,21 +52,21 @@
 
                             tableau en twig:   {"key" : "value"}
                         #}
-                        <a class="nav-link" href="#">Inscription</a>
+                        <a class="nav-link" href="{{ path ('registration') }}">Inscription</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link" href="{{ path ('login') }}">Connexion</a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Accès au panier</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Gestion des produits</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Nous contacter</a>
-                </li>
+                {#                    <li class="nav-item">#}
+                {#                        <a class="nav-link" href="#">Accès au panier</a>#}
+                {#                    </li>#}
+                {#                    <li class="nav-item">#}
+                {#                        <a class="nav-link" href="#">Gestion des produits</a>#}
+                {#                    </li>#}
+                {#                    <li class="nav-item">#}
+                {#                        <a class="nav-link" href="#">Nous contacter</a>#}
+                {#                    </li>#}
 
             </ul>
         </div>
