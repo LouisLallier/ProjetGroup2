@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <label for="">Sous Service a ajouter : </label>
+    {{ form_row(form.nom) }}
+
+    {{ form_row(form.Valider) }}
+
+    {{ form_end(form) }}
+
+
+{% endblock %}
