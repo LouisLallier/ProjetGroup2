@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Service;
 use App\Entity\User;
 use App\Form\UpdateUserType;
 use App\Repository\UserRepository;
@@ -66,6 +67,17 @@ class UserController extends AbstractController
 
         return $this->render('user/profile.html.twig',[
             'user'=>$user
+        ]);
+
+    }
+    /**
+    *@Route("/allservicesUser",name="allservicesUser")
+    */
+    public function allservicesUser(){
+        $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
+
+        return $this->render('user/allservicesUser.html.twig',[
+            'services'=>$services
         ]);
 
     }
