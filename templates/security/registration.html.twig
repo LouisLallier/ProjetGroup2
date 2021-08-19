@@ -9,6 +9,8 @@
 {% block body %}
 
     {{ form_start(form) }}
+    <label for="">Nom</label>
+    {{ form_row(form.name) }}
 
     <label for="">Prénom</label>
     {{ form_row(form.firstname) }}
