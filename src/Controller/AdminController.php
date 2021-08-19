@@ -29,6 +29,25 @@ class AdminController extends AbstractController
     }
 
 
+
+
+//    ---------------------------------------------------------
+//    -------------  SERVICE  ---------------------
+
+
+    /**
+     * @Route("/allservices", name="allServices")
+     */
+    public function allService(): Response
+    {
+        $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
+
+        return $this->render('admin/allServices.html.twig', [
+            "services" => $services
+        ]);
+    }
+
+
     /**
     *@Route("/add_service",name="add_service")
     */
@@ -42,7 +61,7 @@ class AdminController extends AbstractController
 
             $manager->persist($service);
             $manager->flush();
-            return $this->redirectToRoute('add_service');
+            return $this->redirectToRoute('allServices');
         }
         return $this->render('admin/addService.html.twig', [
             'form'=>$form->createView(),
@@ -50,6 +69,47 @@ class AdminController extends AbstractController
         ]);
 
     }
+
+
+    /**
+     * @Route("/update_sevice/{id}", name="update_sevice")
+     */
+    public function updateService($id, Request $request, EntityManagerInterface $manager)
+    {
+
+        $service = $this->getDoctrine()->getRepository(Service::class)->find($id);
+
+        $form = $this->createForm(ServiceType::class, $service);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $manager->persist($service);
+            $manager->flush();
+
+            return $this->redirectToRoute('add_service');
+
+        }
+
+        return $this->render('admin/addService.html.twig', [
+            'form' => $form->createView(),
+            'service' => $service
+        ]);
+    }
+
+    /**
+     * @Route("/delete_service/{id}", name="delete_service")
+     */
+    public function deleteService ($id, EntityManagerInterface $manager)
+    {
+        $service = $this->getDoctrine()->getRepository(Service::class)->find($id);
+
+        $manager->remove($service);
+        $manager->flush();
+
+        return $this->redirectToRoute('allServices');
+    }
+
 
 
 
