@@ -19,6 +19,7 @@ class ProController extends AbstractController
     public function onePro($id){
         $pro = $this->getDoctrine()->getRepository(Pro::class)->find($id);
 
+
         return $this->render('pro/onePro.html.twig', [
             "pro" => $pro
         ]);

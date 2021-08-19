@@ -6,22 +6,27 @@
 
         <div class="show-pro">
 
-            <h2>Prenom : {{ pro.firstname }}</h2>
-            <h2>Nom : {{ pro.name }}</h2>
-            <h2>Education: {{ pro.graduation }}</h2>
-            <h2>Experience : {{ pro.experience }}</h2>
+            <h3>Prenom : {{ pro.firstname }}</h3>
+            <h3>Nom : {{ pro.name }}</h3>
+            <h3>Education: {{ pro.graduation }}</h3>
+            <h3>Experience : {{ pro.experience }}</h3>
             <p>A propos : {{ pro.description }}</p>
+            {% for presta in pro.prestation %}
+                <div>
+                    Prestations: {{ pro.presta }}
+                </div>
+            {% endfor %}
 
-            <h2>Prestations: {{ pro.prestation }}</h2>
+
 
         </div>
 
             <div class="text-center">
-                    <button type="submit" class="btn btn-primary", {{id: pro.id}) }}">Suprimer</button>
+                    <button type="submit" class="btn btn-primary", {{ path("pro_delete", {id: pro.id}) }}">Suprimer</button>
             </div>
 
 
-        {% endif %}
+
 
 
 
