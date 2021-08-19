@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Form\AnnonceType;
+use App\Repository\ServiceRepository;
+use App\Repository\SousServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,28 +49,41 @@ class AnnonceController extends AbstractController
 
 
     /**
-     * @Route("/add_annonce", name="addAnnonce")
+     * @Route("/add_annonce/{id}", name="add_annonce")
      */
-    public function addAnnonce(Request $request, EntityManagerInterface $manager)
+    public function addAnnonce(Request $request, EntityManagerInterface $manager,
+                               SousServiceRepository $sousServiceRepository,
+                               ServiceRepository $serviceRepository, $id)
     {
-        $annonce = new Annonce();
-        $form = $this->createForm(AnnonceType::class, $annonce);
-        $form->handleRequest($request);
+        $sousServices = $sousServiceRepository->findBy(['service' => $id]);
 
-        if($form->isSubmitted() && $form->isValid()){
+
+        if ($_POST) {
+
+            $sousSer = $sousServiceRepository->find($request->request->get('sousService'));
+            //  dd($sousSer);
+            $hour = new DateTime($request->request->get('hour'));
+            $date = new DateTime($request->request->get('dateAvailable'));
+
+            $annonce = new Annonce();
+            $annonce->setPrice($request->request->get('price'));
+            $annonce->setCity($request->request->get('city'));
+            $annonce->setDateAvailable($date);
+            $annonce->setHour($hour);
+            $annonce->setDescription($request->request->get('description'));
 
             $annonce->setDateDeCreation(new DateTime("now"));
-
+            $annonce->setSousService($sousSer, $annonce);
             $manager->persist($annonce);
             $manager->flush();
 
-            return $this->redirectToRoute('annonces');
-
         }
 
-        return $this->render('annonce/addAnnonce.html.twig', [
-            "formAnnonce" => $form->createView(),
-            "annonce" => $annonce
+        return $this->render('annonce/addAnnonces.html.twig', [
+            'sousServices'=>$sousServices,
+
+
+
         ]);
     }
 
