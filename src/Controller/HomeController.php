@@ -14,11 +14,11 @@ class HomeController extends AbstractController
      */
     public function home(UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser()->getId();
+
+
 
         return $this->render('home/home.html.twig', [
-            'user'=>$user
+
         ]);
     }
 
