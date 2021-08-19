@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }}Inscription
+{% endblock %}
+{% block h1 %}
+    Inscription
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+
+
+
+    <label for="">Nom</label>
+    {{ form_row(form.name) }}
+    <label for="">Prenom</label>
+    {{ form_row(form.firstname) }}
+    <label for="">description</label>
+    {{ form_row(form.description) }}
+
+    <label for="">Diplômes</label>
+    {{ form_row(form.graduation) }}
+    <label for="">Experience</label>
+    {{ form_row(form.experience) }}
+
+    {{ form_end(form) }}
+
+
+{% endblock %}
