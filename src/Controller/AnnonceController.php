@@ -6,6 +6,7 @@ use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Repository\ServiceRepository;
 use App\Repository\SousServiceRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +53,7 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/add_annonce/{id}", name="add_annonce")
      */
-    public function addAnnonce(Request $request, EntityManagerInterface $manager, SousServiceRepository $sousServiceRepository, ServiceRepository $serviceRepository, $id)
+    public function addAnnonce(Request $request, EntityManagerInterface $manager, SousServiceRepository $sousServiceRepository, ServiceRepository $serviceRepository, $id, UserRepository $userRepository)
     {
         $sousServices = $sousServiceRepository->findBy(['service' => $id]);
 
@@ -66,6 +67,8 @@ class AnnonceController extends AbstractController
 
             $annonce = new Annonce();
             $annonce->setPrice($request->request->get('price'));
+            $user = $this->getUser();
+            $annonce->setUser($user);
             $annonce->setCity($request->request->get('city'));
             $annonce->setDateAvailable($date);
             $annonce->setHour($hour);
