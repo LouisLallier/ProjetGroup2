@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Service;
+use App\Entity\SousService;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Form\ServiceType;
+use App\Form\SousServiceType;
 use App\Form\UpdateUserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +35,7 @@ class AdminController extends AbstractController
 
 //    ---------------------------------------------------------
 //    -------------  SERVICE  ---------------------
+//    ---------------------------------------------------------
 
 
     /**
@@ -108,6 +111,50 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('allServices');
+    }
+
+
+
+//    ---------------------------------------------------
+//-------------------- SOUS SERVICE ------------------------
+//----------------------------------------------------------
+
+
+    /**
+     * @Route("/all_sous_services", name="all_sous_services")
+     */
+    public function allSousService(): Response
+    {
+        $sousServices = $this->getDoctrine()->getRepository(SousService::class)->findAll();
+        //.dd($sousServices);
+        return $this->render('admin/allSousServices.html.twig', [
+            "sousServices" => $sousServices
+        ]);
+    }
+
+
+    /**
+     *@Route("/add_sous_service/{id}",name="add_sous_service")
+     */
+    public function addSousService (Request $request, EntityManagerInterface $manager)
+    {
+        $sousService = new SousService();
+        $form = $this->createForm(SousServiceType::class, $sousService);
+        $form->handleRequest($request);
+
+
+
+        if($form->isSubmitted() && $form->isValid()){
+            //dd($sousService);
+            $manager->persist($sousService);
+            $manager->flush();
+            return $this->redirectToRoute('all_sous_services');
+        }
+        return $this->render('admin/addSousServices.html.twig', [
+            'form'=>$form->createView(),
+            'sousService'=> $sousService
+        ]);
+
     }
 
 
