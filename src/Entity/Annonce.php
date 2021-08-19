@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,10 +44,17 @@ class Annonce
      */
     private $description;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonce")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne (targetEntity=SousService::class, inversedBy="annonce")
+     */
+    private $sousService;
+
 
     public function getId(): ?int
     {
@@ -112,6 +121,8 @@ class Annonce
         return $this;
     }
 
+
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -123,4 +134,28 @@ class Annonce
 
         return $this;
     }
+
+
+    public function getSousService(): ?SousService
+    {
+        return $this->sousService;
+    }
+
+    public function setSousService(?SousService $sousService): self
+    {
+
+            $this->sousService = $sousService;
+            return $this;
+
+
+    }
+
+
+
+    public function setDateDeCreation(\DateTime $param)
+    {
+
+    }
+
+
 }

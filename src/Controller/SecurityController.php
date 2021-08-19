@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Pro;
 use App\Entity\User;
+use App\Form\ProType;
 use App\Form\RegistrationFormType;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -51,8 +53,40 @@ class SecurityController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/registrationPro",name="registrationPro")
+     */
+    public function registrationPro(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    {
+
+        $pro = new Pro();
+
+        $form = $this->createForm(ProType::class, $pro);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()):
+
+            $user=$this->getUser();
+            $user->setPro(1);
+            $user->setRoles(['ROLE_PRO']);
+
+            $manager->persist($pro);
+            $manager->flush();
+            $this->addFlash('success', 'Félicitation! votre inscription s\'est bien déroulée. Connectez vous à présent');
+
+            return $this->redirectToRoute('login');
+        endif;
+
+
+        return $this->render('security/registrationPro.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/login ", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
