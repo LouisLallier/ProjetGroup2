@@ -14,7 +14,7 @@ class AnnonceController extends AbstractController
 {
 
     /**
-     * @Route("/allAnnonces", name="allAnnonces")
+     * @Route("/all_annonces", name="allAnnonces")
      */
     public function allAnnonces(): Response
     {
@@ -47,7 +47,7 @@ class AnnonceController extends AbstractController
 
 
     /**
-     * @Route("/addAnnonce", name="addAnnonce")
+     * @Route("/add_annonce", name="addAnnonce")
      */
     public function addAnnonce(Request $request, EntityManagerInterface $manager)
     {
@@ -73,7 +73,7 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/updateAnnonce/{id}", name="updateAnnonce")
+     * @Route("/update_annonce/{id}", name="updateAnnonce")
      */
     public function updateAnnonce($id, Request $request, EntityManagerInterface $manager)
     {
@@ -96,7 +96,7 @@ class AnnonceController extends AbstractController
 
         }
 
-        return $this->render('annonce/.html.twig', [
+        return $this->render('annonce/up.html.twig', [
             "formAnnonce" => $form->createView(),
             "annonce" => $annonce
         ]);
@@ -105,7 +105,7 @@ class AnnonceController extends AbstractController
 
 
     /**
-     * @Route("/deleteAnnonce/{id}", name="deleteAnnonce")
+     * @Route("/delete_annonce/{id}", name="deleteAnnonce")
      */
     public function deleteAnnonce ($id, EntityManagerInterface $manager)
     {

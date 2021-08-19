@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/updateUser/{id}", name="updateUser")
+     * @Route("/update_user/{id}", name="updateUser")
      */
     public function updateUser($id, Request $request, EntityManagerInterface $manager)
     {
@@ -36,7 +36,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/deleteUser/{id}", name="deleteUser")
+     * @Route("/delete_user/{id}", name="deleteUser")
      */
     public function suppUser($id, EntitymanagerInterface $manager)
     {
@@ -52,7 +52,7 @@ class UserController extends AbstractController
 
     }
     /**
-    *@Route("/profileUser/{id}",name="profileUser")
+    *@Route("/profile_user/{id}",name="profileUser")
     */
     public function profileUser($id, UserRepository $userRepository){
 

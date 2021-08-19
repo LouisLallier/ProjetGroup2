@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/allUsers", name="allUsers")
+     * @Route("/allusers", name="allUsers")
      */
     public function allUsers(): Response
     {
