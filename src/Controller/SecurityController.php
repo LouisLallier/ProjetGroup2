@@ -31,7 +31,8 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+
+            $user->setPro(0);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -76,7 +77,7 @@ class SecurityController extends AbstractController
             $manager->flush();
             $this->addFlash('success', 'Félicitation! votre inscription s\'est bien déroulée. Connectez vous à présent');
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('home');
         endif;
 
 

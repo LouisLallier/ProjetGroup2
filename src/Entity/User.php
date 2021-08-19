@@ -67,10 +67,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $annonces;
 
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $pro;
 
     public function __construct()
     {
@@ -264,6 +270,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPro(): ?int
+    {
+        return $this->pro;
+    }
+
+    public function setPro(int $pro): self
+    {
+        $this->pro = $pro;
 
         return $this;
     }
