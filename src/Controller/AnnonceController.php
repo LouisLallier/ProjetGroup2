@@ -6,6 +6,7 @@ use App\Entity\Annonce;
 use App\Form\AnnonceType;
 use App\Repository\ServiceRepository;
 use App\Repository\SousServiceRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,9 +52,7 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/add_annonce/{id}", name="add_annonce")
      */
-    public function addAnnonce(Request $request, EntityManagerInterface $manager,
-                               SousServiceRepository $sousServiceRepository,
-                               ServiceRepository $serviceRepository, $id)
+    public function addAnnonce(Request $request, EntityManagerInterface $manager, SousServiceRepository $sousServiceRepository, ServiceRepository $serviceRepository, $id)
     {
         $sousServices = $sousServiceRepository->findBy(['service' => $id]);
 
