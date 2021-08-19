@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\ProType;
 use App\Form\RegistrationFormType;
 use App\Form\RegistrationType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,7 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -33,6 +35,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user->setPro(0);
+            // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -58,7 +61,8 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registrationPro",name="registrationPro")
      */
-    public function registrationPro(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
+    public function registrationPro(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder,
+    UserRepository $userRepository)
     {
 
         $pro = new Pro();

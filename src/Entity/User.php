@@ -67,7 +67,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $annonces;
 
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -285,4 +284,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
 }
