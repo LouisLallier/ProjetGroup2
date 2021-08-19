@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProController!{% endblock %}
+
+{% block body %}
+
+        <div class="show-pro">
+
+            <h2>Prenom : {{ pro.firstname }}</h2>
+            <h2>Nom : {{ pro.name }}</h2>
+            <h2>Education: {{ pro.graduation }}</h2>
+            <h2>Experience : {{ pro.experience }}</h2>
+            <p>A propos : {{ pro.description }}</p>
+
+            <h2>Prestations: {{ pro.prestation }}</h2>
+
+        </div>
+
+            <div class="text-center">
+                    <button type="submit" class="btn btn-primary", {{id: pro.id}) }}">Suprimer</button>
+            </div>
+
+
+
+
+
+
+
+        {% endif %}
+
+
+
+
+
+
+{% endblock %}
