@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UpdateUserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,6 +49,19 @@ class UserController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('allUsers');
+
+    }
+    /**
+    *@Route("/profileUser/{id}",name="profileUser")
+    */
+    public function profileUser($id, UserRepository $userRepository){
+
+        $profile = $userRepository->find($id);
+
+
+        return $this->render('user/profile.html.twig',[
+            'profile'=>$profile
+        ]);
 
     }
 
