@@ -3,5 +3,26 @@
 {% block title %}Profile User{% endblock %}
 
 {% block body %}
-<
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="fw-bold">Nom :</span> {{ user.name }}</h5>
+                    <h5 class="card-title"><span class="fw-bold">Prénom :</span>  {{ user.firstname }}</h5>
+                    <p class="card-text"><span class="fw-bold">Email :</span> {{ user.email }}</p>
+                    <p class="card-text"><span class="fw-bold">Adresse :</span> {{ user.adress }}</p>
+                    <p class="card-text"><span class="fw-bold">Ville :</span> {{ user.city }}</p>
+                    <p class="card-text"><span class="fw-bold">Code Postal :</span> {{ user.cp }}</p>
+                    <p class="card-text"><span class="fw-bold">N° Téléphone :</span> {{ user.phone }}</p>
+                    <div class="d-flex card" style="border: none">
+                        <a href="{{ path('updateUser', {id:app.user.id}) }}" class="btn btn-primary fs-6">Modifier</a>
+                        <br />
+                        <a href="{{ path('deleteUser', {id:app.user.id}) }}" class="btn btn-danger fs-6">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

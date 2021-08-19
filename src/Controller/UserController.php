@@ -27,10 +27,15 @@ class UserController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->render('admin/updateUser.html.twig', [
-
+            return $this->redirectToRoute("profileUser", [
+                'id'=>$user->getId()
             ]);
         }
+        return $this->render('admin/updateUser.html.twig', [
+            'form'=>$form->createView(),
+            'user'=>$user
+        ]);
+
 
 
     }
@@ -48,7 +53,7 @@ class UserController extends AbstractController
 
         $manager->flush();
 
-        return $this->redirectToRoute('allUsers');
+        return $this->redirectToRoute('home');
 
     }
     /**
@@ -56,11 +61,11 @@ class UserController extends AbstractController
     */
     public function profileUser($id, UserRepository $userRepository){
 
-        $profile = $userRepository->find($id);
+        $user = $userRepository->find($id);
 
 
         return $this->render('user/profile.html.twig',[
-            'profile'=>$profile
+            'user'=>$user
         ]);
 
     }
