@@ -40,7 +40,7 @@ class SousService
     private $prestation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="sousService")
+     * @ORM\ManyToOne(targetEntity=Service::class, inversedBy="sousService", cascade="persist")
      */
     private $service;
 

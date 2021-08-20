@@ -41,9 +41,8 @@
                     <td>{{ user.city }}</td>
                     <td>{{ user.phone }}</td>
 
-                    {% for unrole in user.roles %}
-                        <td>{{unrole}}</td>
-                    {% endfor %}
+
+                        <td>{{user.roles[0]}}</td>
 
                     <td>
                         <a href="{{ path('promote_pro', {"id":user.id} )}}"><button type="button" class="btn btn-primary">PRO / USER </button></a>
