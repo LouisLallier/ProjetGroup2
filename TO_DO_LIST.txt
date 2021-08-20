@@ -1,0 +1,22 @@
+------- ------ ---- To DO LIST ----- --- -- -----
+-------------------------------------------------
+
+---------------- FRONT ------------------
+
+Page d'accueil :
+Bonton devenir Pro
+Bonton Admin Panel
+
+Admin Panel :
+Revoir les doublons des colones ROLE ??
+
+------------- BACK ---------------------
+
+-> Ajout des Prestations
+-> Implement des Prestations d'un Pro sur sa page OnePro
+
+
+----> Traitement des images lors d'un ajout :
+photo de profil USER
+photo de profil PRO
+Photo des services
