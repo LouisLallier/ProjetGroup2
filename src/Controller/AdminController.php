@@ -112,15 +112,15 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
 
             $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $nomImage = date("YmdHis") . "-" . uniqid() . "-" . $imageFile->getClientOriginalName();
 
-            $nomImage = date("YmdHis") . "-" . uniqid() . "-" . $imageFile->getClientOriginalName();
+                $imageFile->move(
+                    $this->getParameter("image_service"),
+                    $nomImage);
 
-            $imageFile->move(
-                $this->getParameter("image_service"),
-                $nomImage);
-
-            $service->setImage($nomImage);
-
+                $service->setImage($nomImage);
+            }
             $this->addFlash('success', "Le service N° ". $service->getId()." a bien été ajouté");
 
             $manager->persist($service);
@@ -173,10 +173,11 @@ class AdminController extends AbstractController
             unlink($this->getParameter("image_service") . "/" . $service->getImage());
         }
 
-        $manager->remove($service);
-        $manager->flush();
+            $manager->remove($service);
+            $manager->flush();
 
-        return $this->redirectToRoute('allServices');
+            return $this->redirectToRoute('allServices');
+
     }
 
 
