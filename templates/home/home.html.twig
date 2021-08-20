@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Home{% endblock %}
+{% block tailleimage %}
+
+{% endblock %}
 
 {% block body %}
 
-    {% block tailleimage %}
-<div class="col-md-12 mx-auto">
-    {% endblock %}
+
 
     <div>
             <div style="position: relative">
@@ -17,17 +18,35 @@
 
 
     </div>
-    </div>
 
-    <div class="row container">
-        <div class="col-md-4 mb-4">
 
-            <h2 class="my-5 h2">With shadow</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
 
-            <img class="rounded-circle z-depth-2" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
+            <h2 class="my-5 h2">Jardinage</h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
                  data-holder-rendered="true">
 
         </div>
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
+
+            <h2 class="my-5 h2"></h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
+                 data-holder-rendered="true">
+
+        </div>
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
+
+            <h2 class="my-5 h2">With shadow</h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
+                 data-holder-rendered="true">
+
+        </div>
+
+
 
 
     </div>
