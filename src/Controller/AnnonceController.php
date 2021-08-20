@@ -113,7 +113,7 @@ class AnnonceController extends AbstractController
 
         }
 
-        return $this->render('annonce/up.html.twig', [
+        return $this->render('annonce/addAnnonces.html.twig', [
             "formAnnonce" => $form->createView(),
             "annonce" => $annonce
         ]);
@@ -131,7 +131,7 @@ class AnnonceController extends AbstractController
         $manager->remove($annonce);
         $manager->flush();
 
-        return $this->redirectToRoute('annonces');
+        return $this->redirectToRoute('allAnnonces');
     }
 
 
