@@ -22,7 +22,7 @@
         </div>
 
             <div class="text-center">
-                    <button type="submit" class="btn btn-primary", {{ path("pro_delete", {id: pro.id}) }}">Suprimer</button>
+                <a href="{{ path('delete_pro', {"id":pro.id} )}}"><button type="button" class="btn btn-primary">Supprimer </button></a>
             </div>
 
 

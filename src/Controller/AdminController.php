@@ -9,6 +9,7 @@ use App\Form\RegistrationType;
 use App\Form\ServiceType;
 use App\Form\SousServiceType;
 use App\Form\UpdateUserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,54 @@ class AdminController extends AbstractController
             "users" => $users
         ]);
     }
+
+    /**
+     * @Route("/promote_admin/{id}", name="promote_admin")
+     */
+    public function promoteToAdmin($id, EntityManagerInterface $manager, UserRepository $userRepository)
+    {
+        $user = $userRepository->find($id);
+
+        if ($user->getRoles() == ["ROLE_USER"]) {
+            $user->setRoles(["ROLE_ADMIN"]);
+        } elseif($user->getRoles() == ["ROLE_ADMIN"]) {
+            $user->setRoles(["ROLE_PRO"]);
+        } else {
+            $user->setRoles(["ROLE_USER"]);
+        }
+        $manager->persist($user);
+        $manager->flush();
+        $this->addFlash('success', 'Bravo !');
+
+        return $this->redirectToRoute('allUsers');
+    }
+
+    /**
+     * @Route("/promote_pro/{id}", name="promote_pro")
+     */
+    public function promoteToPro($id, EntityManagerInterface $manager, UserRepository $userRepository)
+    {
+        $user = $userRepository->find($id);
+
+        if ($user->getRoles() == ["ROLE_USER"]) {
+            $user->setRoles(["ROLE_PRO"]);
+
+        } elseif($user->getRoles() == ["ROLE_ADMIN"]) {
+            $user->setRoles(["ROLE_PRO"]);
+
+        } else {
+            $user->setRoles(["ROLE_USER"]);
+        }
+        $manager->persist($user);
+        $manager->flush();
+        $this->addFlash('success', 'Bravo !');
+
+        return $this->redirectToRoute('allUsers');
+    }
+
+
+
+
 
 
 
