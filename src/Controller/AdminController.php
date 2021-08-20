@@ -111,6 +111,18 @@ class AdminController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
+            $imageFile = $form->get('image')->getData();
+
+            $nomImage = date("YmdHis") . "-" . uniqid() . "-" . $imageFile->getClientOriginalName();
+
+            $imageFile->move(
+                $this->getParameter("image_produit"),
+                $nomImage);
+
+            $service->setImage($nomImage);
+
+            $this->addFlash('success', "Le service N° ". $service->getId()." a bien été ajouté");
+
             $manager->persist($service);
             $manager->flush();
             return $this->redirectToRoute('allServices');
