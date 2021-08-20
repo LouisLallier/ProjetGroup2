@@ -75,6 +75,15 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('allUsers');
     }
+    /**
+    *@Route("/homeAdmin",name="homeAdmin")
+    */
+    public function homeAdmin(){
+
+        return $this->render('panelAdmin.html.twig',[
+        ]);
+
+    }
 
 
 
