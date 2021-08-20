@@ -27,10 +27,12 @@
         <div class="col-md-4 mb-4 d-flex align-items-center flex-column" style="padding: 0;" >
 
             <h2 class="my-5 h2">{{ service.nom }}</h2>
-
-            <a href="#" style="height: 400px;width: 400px" class="d-flex align-items-center flex-column"><img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/imagesUpload/'~  service.image ) }}"width="50%" height="50%"
+            <div class="zoom">
+                <div class="image">
+                    <a href="#" style="height: 400px;width: 400px" class="d-flex align-items-center flex-column"><img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/imagesUpload/'~  service.image ) }}"width="50%" height="50%"
                     data-holder-rendered="true"></a>
-
+                </div>
+            </div>
         </div>
 
 
