@@ -13,6 +13,14 @@ Revoir les doublons des colones ROLE ??
 ------------- BACK ---------------------
 
 -> Ajout des Prestations
+
+-> Prestation CRUD dans PrestationController
+    - add_prestation
+    - update_prestation
+    - remove_prestation
+    - one_prestation
+    - allprestations
+
 -> Implement des Prestations d'un Pro sur sa page OnePro
 
 
