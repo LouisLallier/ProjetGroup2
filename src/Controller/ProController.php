@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pro;
+use App\Entity\Service;
 use App\Form\ProType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,6 +71,19 @@ class ProController extends AbstractController
         return $this->redirectToRoute('registrationPro');
 
     }
+
+    /**
+     *@Route("/allservicesPro",name="allservicesPro")
+     */
+    public function allservicesPro(){
+        $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
+
+        return $this->render('pro/allservicesPro.html.twig',[
+            'services'=>$services
+        ]);
+
+    }
+
 
 
 }

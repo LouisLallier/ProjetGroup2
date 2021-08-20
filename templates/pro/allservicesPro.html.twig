@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+
+
+
+{% block body %}
+
+
+    {% for service in services %}
+        <div>
+            <a href="{{ path('add_prestation', {id:service.id}) }}">{{ service.nom }}</a>
+
+        </div>
+    {% endfor %}
+
+{% endblock %}
