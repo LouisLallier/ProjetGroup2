@@ -10,20 +10,24 @@
             <h3>Nom : {{ pro.name }}</h3>
             <h3>Education: {{ pro.graduation }}</h3>
             <h3>Experience : {{ pro.experience }}</h3>
-            <h3>A propos : {{ pro.description }}</h3>
-             {% for presta in pro.prestation %}
+            <p>A propos : {{ pro.description }}</p>
+            {% for presta in pro.prestation %}
                 <div>
                     Prestations: {{ pro.presta }}
                 </div>
             {% endfor %}
 
 
+
         </div>
 
             <div class="text-center">
-                <a href="{{path("pro_delete", {id: pro.id})}}"
-                   class="card-link btn btn-outline-primary">Supprimer</a>
+                <a href="{{ path('delete_pro', {"id":pro.id} )}}"><button type="button" class="btn btn-primary">Supprimer </button></a>
             </div>
+
+
+
+
 
 
 {% endblock %}

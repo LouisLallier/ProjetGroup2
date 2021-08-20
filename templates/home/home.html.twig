@@ -1,7 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Home{% endblock %}
+{% block tailleimage %}
+
+{% endblock %}
 
 {% block body %}
-dzfzefeffgrgrtg
+
+
+
+    <div>
+            <div style="position: relative">
+                <div style="position: absolute;top: 4%; left:43%"><h2>Bienvenue</h2></div>
+                <img src="{{ asset('images/image1.png') }}" height="600px" width="100%">
+
+            </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
+
+            <h2 class="my-5 h2">Jardinage</h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
+                 data-holder-rendered="true">
+
+        </div>
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
+
+            <h2 class="my-5 h2"></h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
+                 data-holder-rendered="true">
+
+        </div>
+        <div class="col-md-4 mb-4" style="height: 400px;width: 400px">
+
+            <h2 class="my-5 h2">With shadow</h2>
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/image2.jpg') }}"width="50%" height="50%"
+                 data-holder-rendered="true">
+
+        </div>
+
+
+
+
+    </div>
 {% endblock %}

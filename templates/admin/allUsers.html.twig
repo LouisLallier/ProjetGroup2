@@ -19,7 +19,10 @@
                 <th scope="col">Code postal</th>
                 <th colspan="col">Ville</th>
                 <th colspan="col">Telephone</th>
+                <th>Role</th>
+
                 <th colspan="col">Actions</th>
+                <th colspan="col">Supprimer</th>
 
 
             </tr>
@@ -37,7 +40,18 @@
                     <td>{{ user.cp }}</td>
                     <td>{{ user.city }}</td>
                     <td>{{ user.phone }}</td>
-                    <td><a href="{{ path('deleteUser', {id:user.id}) }}"
+
+                    {% for unrole in user.roles %}
+                        <td>{{unrole}}</td>
+                    {% endfor %}
+
+                    <td>
+                        <a href="{{ path('promote_pro', {"id":user.id} )}}"><button type="button" class="btn btn-primary">PRO / USER </button></a>
+
+                        <a href="{{ path('promote_admin', {"id":user.id} )}}"><button type="button" class="btn btn-primary">ADMIN / USER </button></a></td>
+
+
+                   <td> <a href="{{ path('deleteUser', {id:user.id}) }}"
                            class="card-link btn btn-outline-primary">Supprimer</a></td>
 
                 </tr>

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProController extends AbstractController
 {
     /**
-     * @Route("/one_pro{id}", name ="one_pro")
+     * @Route("/one_pro/{id}", name ="one_pro")
      */
     public function onePro($id){
         $pro = $this->getDoctrine()->getRepository(Pro::class)->find($id);
@@ -26,9 +26,9 @@ class ProController extends AbstractController
     }
 
     /**
-     * @Route("/update_pro{id}", name="update_pro")
+     * @Route("/update_pro/{id}", name="update_pro")
      */
-    public function modifPro($id, Request $request, EntitymanagerInterface $manager)
+    public function updatePro($id, Request $request, EntitymanagerInterface $manager)
     {
 
 
@@ -40,12 +40,12 @@ class ProController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            $pro->setDateDeModification(new DateTime("now"));
-
             $manager->persist($pro);
             $manager->flush();
 
-            return $this->redirectToRoute();
+            return $this->redirectToRoute('one_pro', [
+                'id'=> $id
+            ]);
 
         }
 
@@ -55,7 +55,7 @@ class ProController extends AbstractController
     }
 
     /**
-     * @Route("/pro_delete_{id<\d+>}", name="pro_delete")
+     * @Route("/delete_pro{id}", name="delete_pro")
      */
     public function suppPro($id, EntitymanagerInterface $manager)
     {
@@ -67,7 +67,7 @@ class ProController extends AbstractController
 
         $manager->flush();
 
-        return $this->redirectToRoute('pro');
+        return $this->redirectToRoute('registrationPro');
 
     }
 
