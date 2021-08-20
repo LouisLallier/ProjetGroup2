@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PrestationController!{% endblock %}
+
+{% block bprestation
+
+
+<form action="{{ path('add_prestation', { id:1 }) }}" method="post">
+    <input type="text" name="price" placeholder="Prix">
+    <input type="text" name="city" placeholder="city">
+    <input type="date" name="dateAvailable" >
+    <input type="time" name="hour" >
+
+    <input type="time" name="hour" >
+    <input type="time" name="hour" >
+    <input type="text" name="description" placeholder="description">
+
+    <select name="sousService">
+
+        {% for sousService in sousServices %}
+
+            <option value="{{ sousService.id }}">{{ sousService.nom }}</option>
+
+        {% endfor %}
+
+    </select>
+
+    <br>
