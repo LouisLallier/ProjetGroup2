@@ -9,6 +9,7 @@ use App\Form\RegistrationType;
 use App\Form\ServiceType;
 use App\Form\SousServiceType;
 use App\Form\UpdateUserType;
+use App\Repository\ServiceRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -169,10 +170,15 @@ class AdminController extends AbstractController
 
         $service = $this->getDoctrine()->getRepository(Service::class)->find($id);
 
+        $serviceid = $service->getId();
+        $sousservices = $this->getDoctrine()->getRepository(SousService::class)->findBy(['id'=>$serviceid]);
+
         if($service->getImage()){
             unlink($this->getParameter("image_service") . "/" . $service->getImage());
         }
-
+            //foreach ($sousservices as $sousservice) {
+       // $manager->remove($sousservice);
+   // }
             $manager->remove($service);
             $manager->flush();
 
@@ -203,23 +209,28 @@ class AdminController extends AbstractController
     /**
      *@Route("/add_sous_service/{id}",name="add_sous_service")
      */
-    public function addSousService (Request $request, EntityManagerInterface $manager)
+    public function addSousService (Request $request, EntityManagerInterface $manager, ServiceRepository $repository, $id)
     {
-        $sousService = new SousService();
-        $form = $this->createForm(SousServiceType::class, $sousService);
-        $form->handleRequest($request);
 
 
 
-        if($form->isSubmitted() && $form->isValid()){
+
+        if($_POST){
             //dd($sousService);
+             $sousService = new SousService();
+            $prix=$request->request->get('price');
+                   $name=$request->request->get('name');$serviceId=$request->request->get('id');
+                   $service=$repository->find($serviceId);
+            $sousService->setPrice($prix);
+            $sousService->setNom($name);
+            $sousService->setService($service);
             $manager->persist($sousService);
             $manager->flush();
             return $this->redirectToRoute('all_sous_services');
         }
         return $this->render('admin/addSousServices.html.twig', [
-            'form'=>$form->createView(),
-            'sousService'=> $sousService
+            'id'=>$id,
+
         ]);
 
     }
