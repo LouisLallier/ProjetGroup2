@@ -21,12 +21,12 @@
 
 
         
-
+    <h2 class="text-center mt-2">Nos Services</h2>
     <div class="row justify-content-center">
     {% for service in services %}
         <div class="col-md-4 mb-4 d-flex align-items-center flex-column" style="padding: 0;" >
 
-            <h2 class="my-5 h2">{{ service.nom }}</h2>
+            <h3 class="my-5">{{ service.nom }}</h3>
             <div class="zoom">
                 <div class="d-flex align-items-center flex-column image">
                     <a href="#" style="height: 400px;width: 400px" class="d-flex align-items-center flex-column"><img class="rounded-circle z-depth-2" alt="100x100" src="{{ asset('images/imagesUpload/'~  service.image ) }}"width="50%" height="70%"
