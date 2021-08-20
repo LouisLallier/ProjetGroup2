@@ -116,7 +116,7 @@ class AdminController extends AbstractController
             $nomImage = date("YmdHis") . "-" . uniqid() . "-" . $imageFile->getClientOriginalName();
 
             $imageFile->move(
-                $this->getParameter("image_produit"),
+                $this->getParameter("image_service"),
                 $nomImage);
 
             $service->setImage($nomImage);
@@ -166,7 +166,12 @@ class AdminController extends AbstractController
      */
     public function deleteService ($id, EntityManagerInterface $manager)
     {
+
         $service = $this->getDoctrine()->getRepository(Service::class)->find($id);
+
+        if($service->getImage()){
+            unlink($this->getParameter("image_service") . "/" . $service->getImage());
+        }
 
         $manager->remove($service);
         $manager->flush();
