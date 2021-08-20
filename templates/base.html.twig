@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.1/lux/bootstrap.min.css" integrity="sha512-EJJuqC8nbI+dUjDM89eZ8dVmckG/vAfKIhmW4pi3Y/S1gE8uvIHuPqpbZ3/DliUQOZbS0Wp7317zoPRRoX+E+A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
+    <link rel="stylesheet" href="{{ asset('css/imageTransform.css') }}">
 
     <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("css/accueil.css") }}">
@@ -76,9 +76,9 @@
                             </ul>
                         </li>
 
-                        {% if  app.user.roles  == ['ROLE_ADMIN'] %}
+                        {% if is_granted("ROLE_ADMIN") %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('allusers') }}">Admin PANEL</a>
+                                <a class="nav-link" href="{{ path('allUsers') }}">Admin PANEL</a>
                             </li>
                         {% endif %}
 
