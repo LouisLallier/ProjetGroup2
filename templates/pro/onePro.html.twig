@@ -18,20 +18,12 @@
             {% endfor %}
 
 
-
         </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary"><a href="{{path("pro_delete", {id: pro.id})}}"
-                   class="card-link btn btn-outline-primary">Suprimer</a></button>
-
-                {# <a href="{{path("pro_delete", {id: pro.id})}}"></a>
-                <button type="submit" class="btn btn-primary", {{ path("pro_delete", {id: pro.id}) }}">Suprimer</button>#}
+                <a href="{{path("pro_delete", {id: pro.id})}}"
+                   class="card-link btn btn-outline-primary">Supprimer</a>
             </div>
-
-
-
-
 
 
 {% endblock %}
