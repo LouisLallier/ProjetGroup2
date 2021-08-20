@@ -15,6 +15,9 @@ class ServiceType extends AbstractType
         $builder
             ->add('nom')
             ->add("Valider", SubmitType::class)
+            ->add('image', FileType::class, [
+                "required" => false
+            ])
         ;
     }
 
