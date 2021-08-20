@@ -25,7 +25,7 @@ class Service
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=SousService::class, mappedBy="service" cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=SousService::class, mappedBy="service")
      */
     private $sousService;
 
